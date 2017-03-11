@@ -104,7 +104,7 @@ You can later access `ns.$` and you'll get:
     }
   },
   music: {
-    tango: 'nice
+    tango: 'nice'
   },
   hi: 'there'
 }
