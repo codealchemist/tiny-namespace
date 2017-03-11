@@ -23,7 +23,7 @@ Will create or extend an existing namespace.
 
 ### get(path)
 
-Will return existing data on the requested path or undefined if the path doesn't exist.
+Will return existing data on the requested path or `undefined` if the path doesn't exist.
 
 Usage:
 ```
