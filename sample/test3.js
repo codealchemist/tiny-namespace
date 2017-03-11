@@ -1,0 +1,5 @@
+require('./test1')
+require('./test2')
+const ns = require('./index')
+ns.set('world.countries.argentina', 'we love asado and dulce de leche :D')
+console.log(ns.$)

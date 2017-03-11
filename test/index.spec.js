@@ -1,17 +1,17 @@
 'use strict'
 const chai = require('chai')
 const expect = chai.expect
-const namespace = require('../index')
+const ns = require('../index')
 
-describe('Namespace', function () {
+describe('tiny-namespace', function () {
   it('should provide an interface', function () {
-    expect(namespace).not.to.be.undefined
+    expect(ns).not.to.be.undefined
   })
 
   it('should set a string', function () {
-    namespace.set('space.planets.earth', 'cool!')
+    ns.set('space.planets.earth', 'cool!')
 
-    expect(namespace.$).to.eql({
+    expect(ns.$).to.eql({
       space: {
         planets: {
           earth: 'cool!'
@@ -20,12 +20,24 @@ describe('Namespace', function () {
     })
   })
 
+  it('should return namespace when set', function () {
+    const namespace = ns.set('space.planets.earth', 'awesome!')
+
+    expect(namespace).to.eql({
+      space: {
+        planets: {
+          earth: 'awesome!'
+        }
+      }
+    })
+  })
+
   it('should set an object', function () {
-    namespace.set('space.planets.earth', {
+    ns.set('space.planets.earth', {
       animals: ['dolphins', 'dogs', 'cats']
     })
 
-    expect(namespace.$).to.eql({
+    expect(ns.$).to.eql({
       space: {
         planets: {
           earth: {
@@ -37,21 +49,21 @@ describe('Namespace', function () {
   })
 
   it('should get', function () {
-    const value = namespace.get('space.planets.earth.animals')
+    const value = ns.get('space.planets.earth.animals')
     expect(value).to.eql(['dolphins', 'dogs', 'cats'])
   })
 
   it('should get undefined', function () {
-    const value = namespace.get('nope')
+    const value = ns.get('nope')
     expect(value).not.to.be.defined
   })
 
   it('should extend', function () {
-    namespace.set('space.planets.mars', 'soon!')
-    namespace.set('space.comets.halley', 'every 75/76 years')
-    namespace.set('metal', 'yeah!')
+    ns.set('space.planets.mars', 'soon!')
+    ns.set('space.comets.halley', 'every 75/76 years')
+    ns.set('metal', 'yeah!')
 
-    expect(namespace.$).to.eql({
+    expect(ns.$).to.eql({
       space: {
         planets: {
           earth: {
@@ -68,9 +80,9 @@ describe('Namespace', function () {
   })
 
   it('should tell if a property exist', function () {
-    expect(namespace.has('spacex')).to.equal(false)
-    expect(namespace.has('space.planets')).to.equal(true)
-    expect(namespace.has('space.planets.mars')).to.equal(true)
-    expect(namespace.has('space.comets.halley')).to.equal(true)
+    expect(ns.has('spacex')).to.equal(false)
+    expect(ns.has('space.planets')).to.equal(true)
+    expect(ns.has('space.planets.mars')).to.equal(true)
+    expect(ns.has('space.comets.halley')).to.equal(true)
   })
 })

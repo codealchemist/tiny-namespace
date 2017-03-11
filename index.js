@@ -13,12 +13,12 @@ function set (path, data, ns = namespace) {
   if (!Array.isArray(tokens)) throw new Error(`Invalid path: ${path}`)
   if (tokens.length === 1) {
     ns[tokens] = data
-    return
+    return namespace
   }
 
   const token = tokens.shift()
   if (ns[token] === undefined) ns[token] = {}
-  set(tokens.join('.'), data, ns[token])
+  return set(tokens.join('.'), data, ns[token])
 }
 
 /**
